@@ -24,6 +24,7 @@ const adminSchema = new mongoose.Schema({
 
 const teacherSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", require: true },
+  // The admin _id is the school id
   schoolId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
