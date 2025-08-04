@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const teacherSchema = new mongoose.Schema({
+const teacherSchema = new Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", require: true },
   schoolId: {
     type: mongoose.Schema.Types.ObjectId,
