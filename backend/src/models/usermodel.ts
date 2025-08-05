@@ -1,9 +1,9 @@
 import mongoose, { Model, Schema } from "mongoose";
 
 const userSchema = new Schema({
-  name: { type: String, require: true },
-  email: { type: String, unique: true, require: true },
-  password: { type: String, require: true },
+  name: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
   role: {
     type: String,
     enum: ["superadmin", "admin", "teacher", "student"],
@@ -13,6 +13,8 @@ const userSchema = new Schema({
     phone: String,
     gender: String,
   },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
 export const userModel = mongoose.model("User", userSchema);
