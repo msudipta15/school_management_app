@@ -8,6 +8,11 @@ const studentSchema = new Schema({
   guardian_name: { type: String, require: true },
   contact: { type: String, require: true },
   address: { type: String, require: true },
+  schoolId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "School",
+    require: true,
+  },
 });
 
 export const studentModel = mongoose.model("Student", studentSchema);
