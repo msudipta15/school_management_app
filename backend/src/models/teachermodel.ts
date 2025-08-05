@@ -13,7 +13,7 @@ const teacherSchema = new Schema(
       required: true,
     },
     subjects: [{ type: String }],
-    classes: [{ type: String }],
+    classes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }],
   },
   { timestamps: true }
 );
