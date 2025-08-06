@@ -27,6 +27,7 @@ authrouter.post("/signup", async (req, res) => {
     });
 
     await newUser.save();
+    res.status(200).json({ msg: "Sign up successfull !" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Something went wrong !" });
