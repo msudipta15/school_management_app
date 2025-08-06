@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { authrouter } from "./routes/authroutes.js";
+import { createSuperAdmin } from "./utils/createsuperadmin.js";
 dotenv.config();
 const app = express();
 const port = 3002;
@@ -13,6 +14,8 @@ async function main() {
             console.log("Connecting to db......");
             mongoose.connect(db_url);
             console.log("Connected to database");
+            // Create Super Admin if not already created
+            await createSuperAdmin();
         }
         catch (error) {
             console.log(error);

@@ -5,6 +5,7 @@ import { userModel } from "../models/usermodel.js";
 import { generateToken } from "../utils/generatetoken.js";
 dotenv.config();
 const authrouter = Router();
+// Will add email verification later
 authrouter.post("/signup", async (req, res) => {
     try {
         const { name, email, password, role } = req.body;

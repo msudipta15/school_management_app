@@ -12,7 +12,7 @@ const userSchema = new Schema(
     },
     profile: {
       phone: String,
-      gender: String,
+      gender: { type: String, enum: ["M", "F", "Other"] },
     },
   },
   { timestamps: true }

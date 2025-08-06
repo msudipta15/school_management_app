@@ -9,7 +9,7 @@ export declare const userModel: mongoose.Model<{
     role: "superadmin" | "admin" | "teacher" | "student";
     profile?: {
         phone?: string | null;
-        gender?: string | null;
+        gender?: "M" | "F" | "Other" | null;
     } | null;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
@@ -21,7 +21,7 @@ export declare const userModel: mongoose.Model<{
     role: "superadmin" | "admin" | "teacher" | "student";
     profile?: {
         phone?: string | null;
-        gender?: string | null;
+        gender?: "M" | "F" | "Other" | null;
     } | null;
 }, {}, {
     timestamps: true;
@@ -35,7 +35,7 @@ export declare const userModel: mongoose.Model<{
     role: "superadmin" | "admin" | "teacher" | "student";
     profile?: {
         phone?: string | null;
-        gender?: string | null;
+        gender?: "M" | "F" | "Other" | null;
     } | null;
 } & {
     _id: mongoose.Types.ObjectId;
@@ -53,7 +53,7 @@ export declare const userModel: mongoose.Model<{
     role: "superadmin" | "admin" | "teacher" | "student";
     profile?: {
         phone?: string | null;
-        gender?: string | null;
+        gender?: "M" | "F" | "Other" | null;
     } | null;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
@@ -65,7 +65,7 @@ export declare const userModel: mongoose.Model<{
     role: "superadmin" | "admin" | "teacher" | "student";
     profile?: {
         phone?: string | null;
-        gender?: string | null;
+        gender?: "M" | "F" | "Other" | null;
     } | null;
 }>, {}, mongoose.ResolveSchemaOptions<{
     timestamps: true;
@@ -79,7 +79,7 @@ export declare const userModel: mongoose.Model<{
     role: "superadmin" | "admin" | "teacher" | "student";
     profile?: {
         phone?: string | null;
-        gender?: string | null;
+        gender?: "M" | "F" | "Other" | null;
     } | null;
 }> & {
     _id: mongoose.Types.ObjectId;
