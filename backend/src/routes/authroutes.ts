@@ -29,12 +29,25 @@ authrouter.post("/signup", async (req, res) => {
     await newUser.save();
   } catch (error) {
     console.log(error);
-    res.status(500).json({ err: "Something went wrong !" });
+    res.status(500).json({ msg: "Something went wrong !" });
   }
 });
 
-authrouter.post("/signin", async(req,res){
-    
-})
+authrouter.post("/signin", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ msg: "Invalid email !" });
+    }
+
+    const validpassword = bcrypt.compare(password, user.password);
+
+    if (!validpassword) {
+      return res.status(400).json({ msg: "Invalid password !" });
+    }
+  } catch (error) {}
+});
 
 export { authrouter };
