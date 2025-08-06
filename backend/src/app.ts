@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { authrouter } from "./routes/authroutes.js";
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ main();
 
 app.use(express.json());
 
-app.use("/api/v1/auth");
+app.use("/api/v1/auth", authrouter);
 
 // Start the server
 try {

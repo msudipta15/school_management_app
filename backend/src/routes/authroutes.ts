@@ -1,5 +1,4 @@
-import express, { Router } from "express";
-import mongoose from "mongoose";
+import { Router } from "express";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { userModel } from "../models/usermodel.js";
