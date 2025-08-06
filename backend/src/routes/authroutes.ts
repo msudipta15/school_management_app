@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { userModel } from "../models/usermodel.js";
+import { generateToken } from "../utils/generatetoken.js";
 
 dotenv.config();
 
@@ -47,7 +48,14 @@ authrouter.post("/signin", async (req, res) => {
     if (!validpassword) {
       return res.status(400).json({ msg: "Invalid password !" });
     }
-  } catch (error) {}
+
+    const token = generateToken(user._id.toString());
+
+    res.status(200).json({ token: token });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something went wrong !" });
+  }
 });
 
 export { authrouter };
