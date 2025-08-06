@@ -14,5 +14,7 @@ export const generateToken = (
     return;
   }
 
-  const token = jwt.sign({ id: userid, role }, JWT_KEY);
+  const token = jwt.sign({ id: userid }, JWT_KEY);
+
+  return token;
 };
