@@ -50,7 +50,7 @@ authrouter.post("/signin", async (req, res) => {
       return res.status(400).json({ msg: "Invalid password !" });
     }
 
-    const token = generateToken(user._id.toString());
+    const token = generateToken(user._id.toString(), user.role);
 
     res.status(200).json({ token: token });
   } catch (error) {
