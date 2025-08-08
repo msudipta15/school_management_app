@@ -34,5 +34,8 @@ export const authmiddleware = (
     }
 
     req.userid = decoded.id;
-  } catch (error) {}
+    next();
+  } catch (error) {
+    res.status(500).json({ msg: "Something went wrong !" });
+  }
 };
