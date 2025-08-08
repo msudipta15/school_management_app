@@ -31,7 +31,7 @@ export const authmiddleware = (
     const decoded = jwt.verify(token, jwt_key) as JwtPayload;
 
     if (!decoded || !decoded.id) {
-      res.status(400).json({ msg: "Invalid token. Access denied !" });
+      return res.status(401).json({ msg: "Invalid token. Access denied !" });
     }
 
     req.userid = decoded.id;

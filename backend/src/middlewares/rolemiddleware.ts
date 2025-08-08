@@ -7,7 +7,7 @@ interface AuthRequest extends Request {
 export const authorizerole = (...allowedRoles: string[]) => {
   return (req: AuthRequest, res: Response, next: NextFunction) => {
     if (!allowedRoles || !allowedRoles.includes(req.role)) {
-      res.status(400).json({ msg: "Access denied !" });
+      return res.status(403).json({ msg: "Access denied !" });
     }
     next();
   };
