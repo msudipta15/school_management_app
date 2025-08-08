@@ -1,11 +1,15 @@
 import type { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { type JwtPayload } from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
 
+interface AuthenticationRequest extends Request {
+  userid?: string;
+}
+
 export const authmiddleware = (
-  req: Request,
+  req: AuthenticationRequest,
   res: Response,
   next: NextFunction
 ) => {
@@ -23,10 +27,12 @@ export const authmiddleware = (
   }
 
   try {
-    const decoded = jwt.verify(token, jwt_key);
+    const decoded = jwt.verify(token, jwt_key) as JwtPayload;
 
-    if (!decoded) {
+    if (!decoded || !decoded.id) {
       res.status(400).json({ msg: "Invalid token. Access denied !" });
     }
+
+    req.userid = decoded.id;
   } catch (error) {}
 };
