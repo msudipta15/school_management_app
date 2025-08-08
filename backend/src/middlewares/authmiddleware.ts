@@ -9,6 +9,11 @@ interface AuthenticationRequest extends Request {
   role?: string;
 }
 
+interface extendedJwtPayload extends JwtPayload {
+  id: string;
+  role: string;
+}
+
 export const authmiddleware = (
   req: AuthenticationRequest,
   res: Response,
@@ -28,7 +33,7 @@ export const authmiddleware = (
   }
 
   try {
-    const decoded = jwt.verify(token, jwt_key) as JwtPayload;
+    const decoded = jwt.verify(token, jwt_key) as extendedJwtPayload;
 
     if (!decoded || !decoded.id) {
       return res.status(401).json({ msg: "Invalid token. Access denied !" });
