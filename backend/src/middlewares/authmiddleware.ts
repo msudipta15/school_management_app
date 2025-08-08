@@ -6,6 +6,7 @@ dotenv.config();
 
 interface AuthenticationRequest extends Request {
   userid?: string;
+  role?: string;
 }
 
 export const authmiddleware = (
@@ -34,6 +35,7 @@ export const authmiddleware = (
     }
 
     req.userid = decoded.id;
+    req.role = decoded.role;
     next();
   } catch (error) {
     res.status(500).json({ msg: "Something went wrong !" });
