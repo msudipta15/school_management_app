@@ -3,10 +3,10 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    address: string;
     userId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
-    address: string;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -15,10 +15,10 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    address: string;
     userId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
-    address: string;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -29,10 +29,10 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    address: string;
     userId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
-    address: string;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -47,10 +47,10 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    address: string;
     userId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
-    address: string;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -59,10 +59,10 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    address: string;
     userId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
-    address: string;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -73,10 +73,10 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    address: string;
     userId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
-    address: string;
     roll: string;
     guardian_name: string;
     contact: string;

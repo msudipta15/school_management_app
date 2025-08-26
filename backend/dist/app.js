@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { authrouter } from "./routes/authroutes.js";
 import { createSuperAdmin } from "./utils/createsuperadmin.js";
+import { adminrouter } from "./routes/adminroutes.js";
 dotenv.config();
 const app = express();
 const port = 3002;
@@ -28,6 +29,7 @@ async function main() {
 main();
 app.use(express.json());
 app.use("/api/v1/auth", authrouter);
+app.use("/api/v1/admin", adminrouter);
 // Start the server
 try {
     app.listen(port);
