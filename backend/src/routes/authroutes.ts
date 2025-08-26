@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { userModel } from "../models/usermodel.js";
 import { generateToken } from "../utils/generatetoken.js";
+import { authmiddleware } from "../middlewares/authmiddleware.js";
 
 dotenv.config();
 
@@ -57,6 +58,12 @@ authrouter.post("/signin", async (req, res) => {
     console.log(error);
     res.status(500).json({ msg: "Something went wrong !" });
   }
+});
+
+authrouter.get("/role", authmiddleware, async (req, res) => {
+  //@ts-ignore
+  const role = req.role;
+  res.json({ msg: `Role: ${role}` });
 });
 
 export { authrouter };

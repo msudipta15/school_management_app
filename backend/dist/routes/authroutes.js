@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 import { userModel } from "../models/usermodel.js";
 import { generateToken } from "../utils/generatetoken.js";
+import { authmiddleware } from "../middlewares/authmiddleware.js";
 dotenv.config();
 const authrouter = Router();
 // Will add email verification later
@@ -39,13 +40,18 @@ authrouter.post("/signin", async (req, res) => {
         if (!validpassword) {
             return res.status(400).json({ msg: "Invalid password !" });
         }
-        const token = generateToken(user._id.toString());
+        const token = generateToken(user._id.toString(), user.role);
         res.status(200).json({ token: token });
     }
     catch (error) {
         console.log(error);
         res.status(500).json({ msg: "Something went wrong !" });
     }
+});
+authrouter.get("/role", authmiddleware, async (req, res) => {
+    //@ts-ignore
+    const role = req.role;
+    res.json({ msg: `Role: ${role}` });
 });
 export { authrouter };
 //# sourceMappingURL=authroutes.js.map
