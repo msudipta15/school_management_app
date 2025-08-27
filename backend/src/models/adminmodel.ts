@@ -7,8 +7,8 @@ const adminSchema = new Schema(
       ref: "User",
       required: true,
     },
-    schoolId: {
-      type: mongoose.Schema.Types.ObjectId,
+    schoolCode: {
+      type: String,
       ref: "School",
       required: true,
     },

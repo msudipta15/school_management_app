@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
 import { authorizerole } from "../middlewares/rolemiddleware.js";
 import { schoolModel } from "../models/schoolmodel.js";
+import { generatepassword } from "../utils/generatepassword.js";
+import { userModel } from "../models/usermodel.js";
 
 dotenv.config();
 
@@ -58,6 +60,22 @@ adminrouter.get(
     } catch (error) {
       res.status(405).json({ msg: "Something went wrong " });
     }
+  }
+);
+
+adminrouter.post(
+  "/:schoolCode/createadmin",
+  authmiddleware,
+  authorizerole("superadmin"),
+  async (req, res) => {
+    const { name, email } = req.body;
+    const role = "admin";
+    const password = generatepassword(10);
+
+    try {
+      const duplicate = await userModel.findOne({ email });
+      const user = await userModel.create({ name, password, email, role });
+    } catch (error) {}
   }
 );
 
