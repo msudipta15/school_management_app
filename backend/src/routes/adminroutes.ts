@@ -90,4 +90,13 @@ adminrouter.post(
   }
 );
 
+adminrouter.post(
+  "/:schoolCode/createteacher",
+  authmiddleware,
+  authorizerole("superadmin"),
+  async (req, res) => {
+    const { name, email } = req.body;
+  }
+);
+
 export { adminrouter };
