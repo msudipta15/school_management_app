@@ -27,5 +27,15 @@ adminrouter.post("/addschool", authmiddleware, authorizerole("superadmin"), asyn
         res.status(500).json({ msg: "Something went wrong" });
     }
 });
+adminrouter.get("/schools", authmiddleware, authorizerole("superadmin"), async (req, res) => {
+    try {
+        const school = await schoolModel.find({});
+        const schoolnames = school.map((s) => s.name);
+        res.status(200).json({ schools: school });
+    }
+    catch (error) {
+        res.status(405).json({ msg: "Something went wrong " });
+    }
+});
 export { adminrouter };
 //# sourceMappingURL=adminroutes.js.map
