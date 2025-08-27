@@ -38,4 +38,18 @@ adminrouter.post(
   }
 );
 
+adminrouter.get(
+  "/schools",
+  authmiddleware,
+  authorizerole("superadmin"),
+  async (req, res) => {
+    try {
+      const school = await schoolModel.find();
+      res.status(200).json({ msg: `Schools : ${school}` });
+    } catch (error) {
+      res.status(405).json({ msg: "Something went wrong " });
+    }
+  }
+);
+
 export { adminrouter };
