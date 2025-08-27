@@ -1,1 +1,1 @@
-{"version":3,"file":"adminmodel.d.ts","sourceRoot":"","sources":["../../src/models/adminmodel.ts"],"names":[],"mappings":"AAAA,OAAO,QAAoB,MAAM,UAAU,CAAC;AAkB5C,eAAO,MAAM,UAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GAAuC,CAAC"}
+{"version":3,"file":"adminmodel.d.ts","sourceRoot":"","sources":["../../src/models/adminmodel.ts"],"names":[],"mappings":"AAAA,OAAO,QAAoB,MAAM,UAAU,CAAC;AAmB5C,eAAO,MAAM,UAAU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;GAAuC,CAAC"}

@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
 import { authorizerole } from "../middlewares/rolemiddleware.js";
 import { schoolModel } from "../models/schoolmodel.js";
+import { generatepassword } from "../utils/generatepassword.js";
+import { userModel } from "../models/usermodel.js";
+import { adminModel } from "../models/adminmodel.js";
 dotenv.config();
 const adminrouter = Router();
 adminrouter.post("/addschool", authmiddleware, authorizerole("superadmin"), async (req, res) => {
@@ -42,6 +45,24 @@ adminrouter.get("/schools", authmiddleware, authorizerole("superadmin"), async (
     }
     catch (error) {
         res.status(405).json({ msg: "Something went wrong " });
+    }
+});
+adminrouter.post("/:schoolCode/createadmin", authmiddleware, authorizerole("superadmin"), async (req, res) => {
+    const { name, email } = req.body;
+    const role = "admin";
+    const password = generatepassword(10);
+    const schoolCode = req.params.schoolCode;
+    try {
+        const duplicate = await userModel.findOne({ email });
+        if (duplicate) {
+            return res.status(409).json({ msg: "User already exists !" });
+        }
+        const user = await userModel.create({ name, password, email, role });
+        await adminModel.create({ userId: user._id, schoolCode: schoolCode });
+        res.status(200).json({ msg: `Success ! Password: ${user.password}` });
+    }
+    catch (error) {
+        res.status(500).json({ msg: "Something went wrong !" });
     }
 });
 export { adminrouter };

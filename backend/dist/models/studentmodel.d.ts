@@ -5,8 +5,8 @@ export declare const studentModel: mongoose.Model<{
 } & {
     address: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
+    schoolId: mongoose.Types.ObjectId;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -17,8 +17,8 @@ export declare const studentModel: mongoose.Model<{
 } & {
     address: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
+    schoolId: mongoose.Types.ObjectId;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -31,8 +31,8 @@ export declare const studentModel: mongoose.Model<{
 } & {
     address: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
+    schoolId: mongoose.Types.ObjectId;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -49,8 +49,8 @@ export declare const studentModel: mongoose.Model<{
 } & {
     address: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
+    schoolId: mongoose.Types.ObjectId;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -61,8 +61,8 @@ export declare const studentModel: mongoose.Model<{
 } & {
     address: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
+    schoolId: mongoose.Types.ObjectId;
     roll: string;
     guardian_name: string;
     contact: string;
@@ -75,8 +75,8 @@ export declare const studentModel: mongoose.Model<{
 } & {
     address: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
+    schoolId: mongoose.Types.ObjectId;
     roll: string;
     guardian_name: string;
     contact: string;

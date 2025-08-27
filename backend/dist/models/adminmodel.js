@@ -5,11 +5,12 @@ const adminSchema = new Schema({
         ref: "User",
         required: true,
     },
-    schoolId: {
-        type: mongoose.Schema.Types.ObjectId,
+    schoolCode: {
+        type: String,
         ref: "School",
         required: true,
     },
+    resetpassword: { type: Boolean, default: false },
 }, { timestamps: true });
 export const adminModel = mongoose.model("Admin", adminSchema);
 //# sourceMappingURL=adminmodel.js.map
