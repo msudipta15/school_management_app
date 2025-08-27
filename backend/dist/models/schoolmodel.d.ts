@@ -5,6 +5,7 @@ export declare const schoolModel: mongoose.Model<{
 } & {
     name: string;
     address: string;
+    schoolCode: string;
     contactEmail?: string | null;
     contactPhone?: string | null;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
@@ -13,6 +14,7 @@ export declare const schoolModel: mongoose.Model<{
 } & {
     name: string;
     address: string;
+    schoolCode: string;
     contactEmail?: string | null;
     contactPhone?: string | null;
 }, {}, {
@@ -23,6 +25,7 @@ export declare const schoolModel: mongoose.Model<{
 } & {
     name: string;
     address: string;
+    schoolCode: string;
     contactEmail?: string | null;
     contactPhone?: string | null;
 } & {
@@ -37,6 +40,7 @@ export declare const schoolModel: mongoose.Model<{
 } & {
     name: string;
     address: string;
+    schoolCode: string;
     contactEmail?: string | null;
     contactPhone?: string | null;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
@@ -45,6 +49,7 @@ export declare const schoolModel: mongoose.Model<{
 } & {
     name: string;
     address: string;
+    schoolCode: string;
     contactEmail?: string | null;
     contactPhone?: string | null;
 }>, {}, mongoose.ResolveSchemaOptions<{
@@ -55,6 +60,7 @@ export declare const schoolModel: mongoose.Model<{
 } & {
     name: string;
     address: string;
+    schoolCode: string;
     contactEmail?: string | null;
     contactPhone?: string | null;
 }> & {

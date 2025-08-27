@@ -10,14 +10,22 @@ adminrouter.post("/addschool", authmiddleware, authorizerole("superadmin"), asyn
     const address = req.body.address;
     const contactEmail = req.body.email;
     const contactPhone = req.body.phone;
-    const duplicate_school = await schoolModel.findOne({ name: name });
-    if (duplicate_school) {
+    const schoolCode = req.body.schoolCode;
+    const duplicate_school_name = await schoolModel.findOne({ name: name });
+    const duplicate_school_code = await schoolModel.findOne({
+        schoolCode: schoolCode,
+    });
+    if (duplicate_school_name) {
         return res.status(409).json({ msg: "School already exists !" });
+    }
+    if (duplicate_school_code) {
+        return res.status(409).json({ msg: "School Code already in use !" });
     }
     try {
         const school = await schoolModel.create({
             name,
             address,
+            schoolCode,
             contactEmail,
             contactPhone,
         });
@@ -30,7 +38,6 @@ adminrouter.post("/addschool", authmiddleware, authorizerole("superadmin"), asyn
 adminrouter.get("/schools", authmiddleware, authorizerole("superadmin"), async (req, res) => {
     try {
         const school = await schoolModel.find({});
-        const schoolnames = school.map((s) => s.name);
         res.status(200).json({ schools: school });
     }
     catch (error) {
