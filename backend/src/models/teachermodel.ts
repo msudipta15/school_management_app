@@ -14,7 +14,9 @@ const teacherSchema = new Schema(
     },
     subjects: [{ type: String }],
     classes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }],
+    resetpassword: { type: Boolean, default: false },
   },
+
   { timestamps: true }
 );
 

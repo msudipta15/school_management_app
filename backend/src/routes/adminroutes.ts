@@ -96,6 +96,7 @@ adminrouter.post(
   authorizerole("superadmin"),
   async (req, res) => {
     const { name, email } = req.body;
+    const role = "admin";
   }
 );
 
