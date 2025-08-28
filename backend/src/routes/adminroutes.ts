@@ -116,7 +116,9 @@ adminrouter.post(
       });
 
       res.status(200).json({ msg: `Success ! Password:${teacher.password} ` });
-    } catch (error) {}
+    } catch (error) {
+      res.status(500).json({ msg: "Something went wrong !" });
+    }
   }
 );
 
