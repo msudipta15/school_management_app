@@ -6,6 +6,7 @@ import { schoolModel } from "../models/schoolmodel.js";
 import { generatepassword } from "../utils/generatepassword.js";
 import { userModel } from "../models/usermodel.js";
 import { adminModel } from "../models/adminmodel.js";
+import { teacherModel } from "../models/teachermodel.js";
 
 dotenv.config();
 
@@ -95,8 +96,27 @@ adminrouter.post(
   authmiddleware,
   authorizerole("superadmin"),
   async (req, res) => {
+    const schoolCode = req.params.schoolCode;
     const { name, email } = req.body;
     const role = "admin";
+    const password = generatepassword(10);
+
+    const duplicate = await userModel.findOne({ email });
+
+    if (duplicate) {
+      return res.status(409).json({ msg: "User already exists" });
+    }
+
+    try {
+      const teacher = await userModel.create({ name, email, role, password });
+
+      await teacherModel.create({
+        userId: teacher._id,
+        schoolCode: schoolCode,
+      });
+
+      res.status(200).json({ msg: `Success ! Password:${teacher.password} ` });
+    } catch (error) {}
   }
 );
 
