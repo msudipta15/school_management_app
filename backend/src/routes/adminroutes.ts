@@ -7,6 +7,7 @@ import { generatepassword } from "../utils/generatepassword.js";
 import { userModel } from "../models/usermodel.js";
 import { adminModel } from "../models/adminmodel.js";
 import { teacherModel } from "../models/teachermodel.js";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -72,19 +73,26 @@ adminrouter.post(
   async (req, res) => {
     const { name, email } = req.body;
     const role = "admin";
-    const password = generatepassword(10);
+    const password = "a123";
     const schoolCode = req.params.schoolCode;
+
+    const hashpassword = await bcrypt.hash(password, 10);
 
     try {
       const duplicate = await userModel.findOne({ email });
       if (duplicate) {
         return res.status(409).json({ msg: "User already exists !" });
       }
-      const user = await userModel.create({ name, password, email, role });
+      const user = await userModel.create({
+        name,
+        password: hashpassword,
+        email,
+        role,
+      });
 
       await adminModel.create({ userId: user._id, schoolCode: schoolCode });
 
-      res.status(200).json({ msg: `Success ! Password:${user.password}` });
+      res.status(200).json({ msg: `Success ! Password:${password}` });
     } catch (error) {
       res.status(500).json({ msg: "Something went wrong !" });
     }
@@ -101,6 +109,8 @@ adminrouter.post(
     const role = "teacher";
     const password = "t123";
 
+    const hashpassword = await bcrypt.hash(password, 10);
+
     const duplicate = await userModel.findOne({ email });
 
     if (duplicate) {
@@ -108,14 +118,19 @@ adminrouter.post(
     }
 
     try {
-      const teacher = await userModel.create({ name, email, role, password });
+      const teacher = await userModel.create({
+        name,
+        email,
+        role,
+        password: hashpassword,
+      });
 
       await teacherModel.create({
         userId: teacher._id,
         schoolCode: schoolCode,
       });
 
-      res.status(200).json({ msg: `Success ! Password:${teacher.password} ` });
+      res.status(200).json({ msg: `Success ! Password:${password} ` });
     } catch (error) {
       res.status(500).json({ msg: "Something went wrong !" });
     }
