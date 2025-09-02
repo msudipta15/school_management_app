@@ -5,13 +5,14 @@ const teacherSchema = new Schema({
         ref: "User",
         required: true,
     },
-    schoolId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Admin",
+    schoolCode: {
+        type: String,
+        ref: "School",
         required: true,
     },
     subjects: [{ type: String }],
     classes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Class" }],
+    resetpassword: { type: Boolean, default: false },
 }, { timestamps: true });
 export const teacherModel = mongoose.model("Teacher", teacherSchema);
 //# sourceMappingURL=teachermodel.js.map

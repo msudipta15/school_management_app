@@ -3,16 +3,18 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    schoolCode: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
+    resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    schoolCode: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
+    resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
 }, {}, {
@@ -21,8 +23,9 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    schoolCode: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
+    resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
 } & {
@@ -35,16 +38,18 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    schoolCode: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
+    resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    schoolCode: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
+    resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
 }>, {}, mongoose.ResolveSchemaOptions<{
@@ -53,8 +58,9 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
+    schoolCode: string;
     userId: mongoose.Types.ObjectId;
-    schoolId: mongoose.Types.ObjectId;
+    resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
 }> & {

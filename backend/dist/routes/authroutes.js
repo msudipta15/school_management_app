@@ -53,5 +53,18 @@ authrouter.get("/role", authmiddleware, async (req, res) => {
     const role = req.role;
     res.json({ msg: `Role: ${role}` });
 });
+authrouter.post("/changepassword", authmiddleware, async (req, res) => {
+    const userid = req.userid;
+    const { oldpassword, newpassword } = req.body;
+    if (!oldpassword || !newpassword) {
+        return res
+            .status(400)
+            .json({ msg: "Both old and new password required !" });
+    }
+    try {
+        const user = userModel.findOne({});
+    }
+    catch (error) { }
+});
 export { authrouter };
 //# sourceMappingURL=authroutes.js.map
