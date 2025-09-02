@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { userModel } from "../models/usermodel.js";
 import { generateToken } from "../utils/generatetoken.js";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
+import type { Request } from "express";
 
 dotenv.config();
 

@@ -98,8 +98,8 @@ adminrouter.post(
   async (req, res) => {
     const schoolCode = req.params.schoolCode;
     const { name, email } = req.body;
-    const role = "admin";
-    const password = generatepassword(10);
+    const role = "teacher";
+    const password = "t123";
 
     const duplicate = await userModel.findOne({ email });
 
