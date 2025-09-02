@@ -3,15 +3,15 @@ export declare const adminModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
 }, {}, {
     timestamps: true;
@@ -19,8 +19,8 @@ export declare const adminModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
 } & {
     _id: mongoose.Types.ObjectId;
@@ -32,15 +32,15 @@ export declare const adminModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
 }>, {}, mongoose.ResolveSchemaOptions<{
     timestamps: true;
@@ -48,8 +48,8 @@ export declare const adminModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
 }> & {
     _id: mongoose.Types.ObjectId;

@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { userModel } from "../models/usermodel.js";
 import { generateToken } from "../utils/generatetoken.js";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
+import { adminModel } from "../models/adminmodel.js";
 dotenv.config();
 const authrouter = Router();
 // Will add email verification later
@@ -53,7 +54,7 @@ authrouter.get("/role", authmiddleware, async (req, res) => {
     const role = req.role;
     res.json({ msg: `Role: ${role}` });
 });
-authrouter.post("/changepassword", authmiddleware, async (req, res) => {
+authrouter.post("/resetpassword", authmiddleware, async (req, res) => {
     const userid = req.userid;
     const { oldpassword, newpassword } = req.body;
     if (!oldpassword || !newpassword) {
@@ -62,9 +63,32 @@ authrouter.post("/changepassword", authmiddleware, async (req, res) => {
             .json({ msg: "Both old and new password required !" });
     }
     try {
-        const user = userModel.findOne({});
+        const user = await userModel.findOne({ _id: userid });
+        const admin = await adminModel.findOne({ userId: userid });
+        if (!user) {
+            return res.status(400).json({ msg: "No user found" });
+        }
+        const validpassword = await bcrypt.compare(oldpassword, user.password);
+        if (!validpassword) {
+            return res.status(401).json({ msg: "Invalid old password !" });
+        }
+        const isSame = await bcrypt.compare(newpassword, user.password);
+        if (isSame) {
+            return res
+                .status(400)
+                .json({ msg: "New password can not be same as old password !" });
+        }
+        const hashed = await bcrypt.hash(newpassword, 10);
+        user.password = hashed;
+        if (admin) {
+            admin.resetpassword = true;
+        }
+        await user.save();
+        res.status(200).json({ msg: "Password updated successfully" });
     }
-    catch (error) { }
+    catch (error) {
+        res.status(500).json({ msg: "Something went wrong !" });
+    }
 });
 export { authrouter };
 //# sourceMappingURL=authroutes.js.map

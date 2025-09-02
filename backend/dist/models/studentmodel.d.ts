@@ -3,8 +3,8 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    address: string;
     userId: mongoose.Types.ObjectId;
+    address: string;
     classId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     roll: string;
@@ -15,8 +15,8 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    address: string;
     userId: mongoose.Types.ObjectId;
+    address: string;
     classId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     roll: string;
@@ -29,8 +29,8 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    address: string;
     userId: mongoose.Types.ObjectId;
+    address: string;
     classId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     roll: string;
@@ -47,8 +47,8 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    address: string;
     userId: mongoose.Types.ObjectId;
+    address: string;
     classId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     roll: string;
@@ -59,8 +59,8 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    address: string;
     userId: mongoose.Types.ObjectId;
+    address: string;
     classId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     roll: string;
@@ -73,8 +73,8 @@ export declare const studentModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    address: string;
     userId: mongoose.Types.ObjectId;
+    address: string;
     classId: mongoose.Types.ObjectId;
     schoolId: mongoose.Types.ObjectId;
     roll: string;

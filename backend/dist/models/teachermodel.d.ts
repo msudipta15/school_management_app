@@ -3,8 +3,8 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
@@ -12,8 +12,8 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
@@ -23,8 +23,8 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
@@ -38,8 +38,8 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
@@ -47,8 +47,8 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
@@ -58,8 +58,8 @@ export declare const teacherModel: mongoose.Model<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
-    schoolCode: string;
     userId: mongoose.Types.ObjectId;
+    schoolCode: string;
     resetpassword: boolean;
     subjects: string[];
     classes: mongoose.Types.ObjectId[];
