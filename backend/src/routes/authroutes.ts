@@ -100,6 +100,14 @@ authrouter.post(
         return res.status(401).json({ msg: "Invalid old password !" });
       }
 
+      const isSame = await bcrypt.compare(newpassword, user.password);
+
+      if (isSame) {
+        return res
+          .status(400)
+          .json({ msg: "New password can not be same as old password !" });
+      }
+
       const hashed = await bcrypt.hash(newpassword, 10);
 
       user.password = hashed;
