@@ -35,7 +35,7 @@ main();
 app.use(express.json());
 
 app.use("/api/v1/auth", authrouter);
-app.use("/api/v1/admin", adminrouter);
+app.use("/api/v1/sa", adminrouter);
 app.use("/api/v1/class", classrouter);
 
 // Start the server
