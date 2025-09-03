@@ -6,7 +6,7 @@ const subjectSchema = new Schema(
     code: { type: String }, // example: MATH10 = class 10 Math ( This is optional )
     schoolId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Admin",
+      ref: "School",
       required: true,
     },
   },
