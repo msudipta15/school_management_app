@@ -11,9 +11,9 @@ import bcrypt from "bcrypt";
 
 dotenv.config();
 
-const adminrouter = Router();
+const superadminrouter = Router();
 
-adminrouter.post(
+superadminrouter.post(
   "/addschool",
   authmiddleware,
   authorizerole("superadmin"),
@@ -52,7 +52,7 @@ adminrouter.post(
   }
 );
 
-adminrouter.get(
+superadminrouter.get(
   "/schools",
   authmiddleware,
   authorizerole("superadmin"),
@@ -66,7 +66,7 @@ adminrouter.get(
   }
 );
 
-adminrouter.post(
+superadminrouter.post(
   "/:schoolCode/createadmin",
   authmiddleware,
   authorizerole("superadmin"),
@@ -99,7 +99,7 @@ adminrouter.post(
   }
 );
 
-adminrouter.post(
+superadminrouter.post(
   "/:schoolCode/createteacher",
   authmiddleware,
   authorizerole("superadmin"),
@@ -137,4 +137,4 @@ adminrouter.post(
   }
 );
 
-export { adminrouter };
+export { superadminrouter };
