@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { authrouter } from "./routes/authroutes.js";
 import { createSuperAdmin } from "./utils/createsuperadmin.js";
-import { adminrouter, superadminrouter } from "./routes/adminroutes.js";
+import { superadminrouter } from "./routes/superadminroutes.js";
 import { classrouter } from "./routes/classroutes.js";
 
 dotenv.config();
@@ -36,7 +36,7 @@ app.use(express.json());
 
 app.use("/api/v1/auth", authrouter);
 app.use("/api/v1/sa", superadminrouter);
-app.use("/api/v1/class", classrouter);
+app.use("/api/v1/admin");
 
 // Start the server
 try {
