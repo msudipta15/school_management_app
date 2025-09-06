@@ -10,7 +10,11 @@ app.post(
   "/add",
   authmiddleware,
   authorizerole("superadmin", "admin"),
-  async (req, res) => {}
+  async (req, res) => {
+    const name = req.body.name;
+    const code = req.body.code;
+    const description = req.body.description;
+  }
 );
 
 export { subjectrouter };
