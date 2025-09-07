@@ -4,6 +4,7 @@ import { authorizerole } from "../middlewares/rolemiddleware.js";
 import { schoolModel } from "../models/schoolmodel.js";
 import { classModel } from "../models/classmodel.js";
 import { teacherModel } from "../models/teachermodel.js";
+import { subjectModel } from "../models/subjectmodel.js";
 
 const adminrouter = Router();
 
@@ -25,9 +26,7 @@ adminrouter.post(
       });
 
       if (!school) {
-        return res
-          .status(400)
-          .json({ msg: "No school found corresponding to the school code !" });
+        return res.status(400).json({ msg: "Invalid school code !" });
       }
 
       const duplicate = await classModel.findOne({
@@ -70,6 +69,35 @@ adminrouter.post(
     const code = req.body.code;
     const description = req.body.description;
     const schoolCode = req.params.schoolCode;
+
+    try {
+      const school = await schoolModel.findOne({ schoolCode: schoolCode });
+
+      if (!school) {
+        return res.status(400).json({ msg: "Invalid school code !" });
+      }
+
+      const duplicate = await subjectModel.findOne({
+        name,
+        code,
+        schoolId: school._id,
+      });
+
+      if (duplicate) {
+        return res.status(400).json({ msg: "Subject already exists !" });
+      }
+
+      const subject = await subjectModel.create({
+        name,
+        code,
+        description,
+        schoolId: school._id,
+      });
+
+      res.status(200).json({ msg: "Success", Subject: `${subject}` });
+    } catch (error) {
+      return res.status(500).json({ msg: "Something went wrong !" });
+    }
   }
 );
 
