@@ -61,4 +61,16 @@ adminrouter.post(
   }
 );
 
+adminrouter.post(
+  "/:schoolCode/subject/create",
+  authmiddleware,
+  authorizerole("admin", "superadmin"),
+  async (req, res) => {
+    const name = req.body.name;
+    const code = req.body.code;
+    const description = req.body.description;
+    const schoolCode = req.params.schoolCode;
+  }
+);
+
 export { adminrouter };
