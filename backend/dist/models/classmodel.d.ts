@@ -4,14 +4,18 @@ export declare const classModel: mongoose.Model<{
     updatedAt: NativeDate;
 } & {
     name: string;
+    section: string;
     schoolId: mongoose.Types.ObjectId;
+    strength: number;
     classteacher?: mongoose.Types.ObjectId | null;
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
     name: string;
+    section: string;
     schoolId: mongoose.Types.ObjectId;
+    strength: number;
     classteacher?: mongoose.Types.ObjectId | null;
 }, {}, {
     timestamps: true;
@@ -20,7 +24,9 @@ export declare const classModel: mongoose.Model<{
     updatedAt: NativeDate;
 } & {
     name: string;
+    section: string;
     schoolId: mongoose.Types.ObjectId;
+    strength: number;
     classteacher?: mongoose.Types.ObjectId | null;
 } & {
     _id: mongoose.Types.ObjectId;
@@ -33,14 +39,18 @@ export declare const classModel: mongoose.Model<{
     updatedAt: NativeDate;
 } & {
     name: string;
+    section: string;
     schoolId: mongoose.Types.ObjectId;
+    strength: number;
     classteacher?: mongoose.Types.ObjectId | null;
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
     name: string;
+    section: string;
     schoolId: mongoose.Types.ObjectId;
+    strength: number;
     classteacher?: mongoose.Types.ObjectId | null;
 }>, {}, mongoose.ResolveSchemaOptions<{
     timestamps: true;
@@ -49,7 +59,9 @@ export declare const classModel: mongoose.Model<{
     updatedAt: NativeDate;
 } & {
     name: string;
+    section: string;
     schoolId: mongoose.Types.ObjectId;
+    strength: number;
     classteacher?: mongoose.Types.ObjectId | null;
 }> & {
     _id: mongoose.Types.ObjectId;

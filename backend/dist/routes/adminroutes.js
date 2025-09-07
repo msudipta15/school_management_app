@@ -1,103 +1,78 @@
 import { Router } from "express";
-import dotenv from "dotenv";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
 import { authorizerole } from "../middlewares/rolemiddleware.js";
 import { schoolModel } from "../models/schoolmodel.js";
-import { generatepassword } from "../utils/generatepassword.js";
-import { userModel } from "../models/usermodel.js";
-import { adminModel } from "../models/adminmodel.js";
+import { classModel } from "../models/classmodel.js";
 import { teacherModel } from "../models/teachermodel.js";
-import bcrypt from "bcrypt";
-dotenv.config();
+import { subjectModel } from "../models/subjectmodel.js";
 const adminrouter = Router();
-adminrouter.post("/addschool", authmiddleware, authorizerole("superadmin"), async (req, res) => {
+adminrouter.post("/:schoolCode/class/create", authmiddleware, authorizerole("superadmin", "admin"), async (req, res) => {
     const name = req.body.name;
-    const address = req.body.address;
-    const contactEmail = req.body.email;
-    const contactPhone = req.body.phone;
-    const schoolCode = req.body.schoolCode;
-    const duplicate_school_name = await schoolModel.findOne({ name: name });
-    const duplicate_school_code = await schoolModel.findOne({
-        schoolCode: schoolCode,
-    });
-    if (duplicate_school_name) {
-        return res.status(409).json({ msg: "School already exists !" });
-    }
-    if (duplicate_school_code) {
-        return res.status(409).json({ msg: "School Code already in use !" });
-    }
-    try {
-        const school = await schoolModel.create({
-            name,
-            address,
-            schoolCode,
-            contactEmail,
-            contactPhone,
-        });
-        res.status(200).json({ msg: `${school.name}  is created` });
-    }
-    catch (error) {
-        res.status(500).json({ msg: "Something went wrong" });
-    }
-});
-adminrouter.get("/schools", authmiddleware, authorizerole("superadmin"), async (req, res) => {
-    try {
-        const school = await schoolModel.find({});
-        res.status(200).json({ schools: school });
-    }
-    catch (error) {
-        res.status(405).json({ msg: "Something went wrong " });
-    }
-});
-adminrouter.post("/:schoolCode/createadmin", authmiddleware, authorizerole("superadmin"), async (req, res) => {
-    const { name, email } = req.body;
-    const role = "admin";
-    const password = "a123";
+    const section = req.body.section;
     const schoolCode = req.params.schoolCode;
-    const hashpassword = await bcrypt.hash(password, 10);
+    const classteacher = req.body.classteacher;
     try {
-        const duplicate = await userModel.findOne({ email });
-        if (duplicate) {
-            return res.status(409).json({ msg: "User already exists !" });
-        }
-        const user = await userModel.create({
-            name,
-            password: hashpassword,
-            email,
-            role,
-        });
-        await adminModel.create({ userId: user._id, schoolCode: schoolCode });
-        res.status(200).json({ msg: `Success ! Password:${password}` });
-    }
-    catch (error) {
-        res.status(500).json({ msg: "Something went wrong !" });
-    }
-});
-adminrouter.post("/:schoolCode/createteacher", authmiddleware, authorizerole("superadmin"), async (req, res) => {
-    const schoolCode = req.params.schoolCode;
-    const { name, email } = req.body;
-    const role = "teacher";
-    const password = "t123";
-    const hashpassword = await bcrypt.hash(password, 10);
-    const duplicate = await userModel.findOne({ email });
-    if (duplicate) {
-        return res.status(409).json({ msg: "User already exists" });
-    }
-    try {
-        const teacher = await userModel.create({
-            name,
-            email,
-            role,
-            password: hashpassword,
-        });
-        await teacherModel.create({
-            userId: teacher._id,
+        const school = await schoolModel.findOne({ schoolCode });
+        const classTeacher = await teacherModel.findOne({
+            _id: classteacher,
             schoolCode: schoolCode,
         });
-        res.status(200).json({ msg: `Success ! Password:${password} ` });
+        if (!school) {
+            return res.status(400).json({ msg: "Invalid school code !" });
+        }
+        const duplicate = await classModel.findOne({
+            name,
+            section,
+            schoolId: school._id,
+        });
+        if (duplicate) {
+            return res.status(409).json({ msg: "Class already exists" });
+        }
+        if (!classTeacher) {
+            return res.status(400).json({ msg: "Invalid teacher id !" });
+        }
+        const new_class = await classModel.create({
+            name,
+            section,
+            schoolId: school._id,
+            classteacher,
+        });
+        res.status(200).json({
+            msg: `Class created successfully`,
+            class: new_class,
+        });
     }
     catch (error) {
-        res.status(500).json({ msg: "Something went wrong !" });
+        return res.status(500).json({ msg: "Something went wrong !" });
+    }
+});
+adminrouter.post("/:schoolCode/subject/create", authmiddleware, authorizerole("admin", "superadmin"), async (req, res) => {
+    const name = req.body.name;
+    const code = req.body.code;
+    const description = req.body.description;
+    const schoolCode = req.params.schoolCode;
+    try {
+        const school = await schoolModel.findOne({ schoolCode: schoolCode });
+        if (!school) {
+            return res.status(400).json({ msg: "Invalid school code !" });
+        }
+        const duplicate = await subjectModel.findOne({
+            code,
+            schoolId: school._id,
+        });
+        if (duplicate) {
+            return res.status(400).json({ msg: "Subject code already exists !" });
+        }
+        const subject = await subjectModel.create({
+            name,
+            code,
+            description,
+            schoolId: school._id,
+        });
+        res.status(200).json({ msg: "Success", Subject: `${subject}` });
+    }
+    catch (error) {
+        return res.status(500).json({ msg: "Something went wrong !" });
     }
 });
 export { adminrouter };
