@@ -78,7 +78,6 @@ adminrouter.post(
       }
 
       const duplicate = await subjectModel.findOne({
-        name,
         code,
         schoolId: school._id,
       });
