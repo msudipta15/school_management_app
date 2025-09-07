@@ -83,7 +83,7 @@ adminrouter.post(
       });
 
       if (duplicate) {
-        return res.status(400).json({ msg: "Subject already exists !" });
+        return res.status(400).json({ msg: "Subject code already exists !" });
       }
 
       const subject = await subjectModel.create({
