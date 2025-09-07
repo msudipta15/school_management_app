@@ -8,7 +8,7 @@ import { teacherModel } from "../models/teachermodel.js";
 const adminrouter = Router();
 
 adminrouter.post(
-  "/:schoolCode/create",
+  "/:schoolCode/class/create",
   authmiddleware,
   authorizerole("superadmin", "admin"),
   async (req, res) => {
