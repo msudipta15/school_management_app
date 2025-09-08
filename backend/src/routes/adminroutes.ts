@@ -108,7 +108,7 @@ adminrouter.post(
   async (req, res) => {
     const schoolCode = req.params.schoolCode;
     const class_name = req.params.classname;
-    const subject_name = req.body.name
+    const subject_name = req.body.name;
 
     try {
       const school = await schoolModel.findOne({ schoolCode: schoolCode });
@@ -117,14 +117,35 @@ adminrouter.post(
         return res.status(400).json({ msg: "Invalid school code !" });
       }
 
-      const found_class = await classModel.find({ name: class_name, schoolId:school._id});
+      const subject = await subjectModel.findOne({
+        name: subject_name,
+        schoolId: school._id,
+      });
+
+      if (!subject) {
+        return res.status(400).json({ msg: "No subject found !" });
+      }
+
+      const found_class = await classModel.find({
+        name: class_name,
+        schoolId: school._id,
+      });
 
       if (found_class.length === 0) {
         return res.status(400).json({ msg: "Invalid class name !" });
       }
 
       for (const cls of found_class) {
-        await classSubjectModel.create({ classId: cls._id , subjectId:});
+        const duplicate = await classSubjectModel.findOne({
+          subjectId: subject._id,
+          classId: cls._id,
+        });
+
+        if (duplicate) {
+          return res
+            .status(405)
+            .json({ msg: "Subject already assigned to the class !" });
+        }
       }
     } catch (error) {
       return res.status(500).json({ msg: "Something went wrong !" });
