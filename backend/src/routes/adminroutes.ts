@@ -5,6 +5,7 @@ import { schoolModel } from "../models/schoolmodel.js";
 import { classModel } from "../models/classmodel.js";
 import { teacherModel } from "../models/teachermodel.js";
 import { subjectModel } from "../models/subjectmodel.js";
+import { classSubjectModel } from "../models/classSubjectmodel.js";
 
 const adminrouter = Router();
 
@@ -107,6 +108,27 @@ adminrouter.post(
   async (req, res) => {
     const schoolCode = req.params.schoolCode;
     const class_name = req.params.classname;
+    const subject_name = req.body.name
+
+    try {
+      const school = await schoolModel.findOne({ schoolCode: schoolCode });
+
+      if (!school) {
+        return res.status(400).json({ msg: "Invalid school code !" });
+      }
+
+      const found_class = await classModel.find({ name: class_name, schoolId:school._id});
+
+      if (found_class.length === 0) {
+        return res.status(400).json({ msg: "Invalid class name !" });
+      }
+
+      for (const cls of found_class) {
+        await classSubjectModel.create({ classId: cls._id , subjectId:});
+      }
+    } catch (error) {
+      return res.status(500).json({ msg: "Something went wrong !" });
+    }
   }
 );
 
