@@ -138,7 +138,7 @@ adminrouter.post(
       const duplicate = await classSubjectModel.findOne({
         classId: found_class._id,
         subjectId: subject._id,
-        schooolId: school._id,
+        schoolId: school._id,
       });
 
       if (duplicate) {
@@ -150,14 +150,12 @@ adminrouter.post(
       const assign = await classSubjectModel.create({
         classId: found_class._id,
         subjectId: subject._id,
-        schooolId: school._id,
+        schoolId: school._id,
       });
 
-      res
-        .status(200)
-        .json({
-          msg: `Subject: ${subject.name} assigned to Class:${found_class.name}`,
-        });
+      res.status(200).json({
+        msg: `Subject: ${subject.name} assigned to Class:${found_class.name}`,
+      });
     } catch (error) {
       return res.status(500).json({ msg: "Something went wrong !" });
     }
