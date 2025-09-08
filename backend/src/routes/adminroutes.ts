@@ -101,10 +101,13 @@ adminrouter.post(
 );
 
 adminrouter.post(
-  "/:schoolCode/:classid/assign/subject",
+  "/:schoolCode/:classname/assign/subject",
   authmiddleware,
   authorizerole("admin", "superadmin"),
-  async (req, res) => {}
+  async (req, res) => {
+    const schoolCode = req.params.schoolCode;
+    const class_name = req.params.classname;
+  }
 );
 
 export { adminrouter };
