@@ -100,4 +100,11 @@ adminrouter.post(
   }
 );
 
+adminrouter.post(
+  "/:schoolCode/:classid/assign/subject",
+  authmiddleware,
+  authorizerole("admin", "superadmin"),
+  async (req, res) => {}
+);
+
 export { adminrouter };
