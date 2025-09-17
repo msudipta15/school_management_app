@@ -56,6 +56,7 @@ adminrouter.post(
         class: new_class,
       });
     } catch (error) {
+      console.log(error);
       return res.status(500).json({ msg: "Something went wrong !" });
     }
   }

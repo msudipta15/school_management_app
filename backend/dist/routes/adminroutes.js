@@ -44,6 +44,7 @@ adminrouter.post("/:schoolCode/class/create", authmiddleware, authorizerole("sup
         });
     }
     catch (error) {
+        console.log(error);
         return res.status(500).json({ msg: "Something went wrong !" });
     }
 });
