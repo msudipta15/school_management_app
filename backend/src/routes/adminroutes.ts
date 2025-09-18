@@ -157,7 +157,11 @@ adminrouter.post(
   "/:schoolCode/:classname/assign/teacher",
   authmiddleware,
   authorizerole("admin", "superadmin"),
-  async (req, res) => {}
+  async (req, res) => {
+    const teacherid = req.body.teacherid;
+    const schoolCode = req.body.schoolCode;
+    const classname = req.body.class_name;
+  }
 );
 
 export { adminrouter };
