@@ -154,13 +154,22 @@ adminrouter.post(
 );
 
 adminrouter.post(
-  "/:schoolCode/:classname/assign/teacher",
+  "/:schoolCode/:classname/:subject/assign/teacher",
   authmiddleware,
   authorizerole("admin", "superadmin"),
   async (req, res) => {
+    const subjectid = req.params.subject;
     const teacherid = req.body.teacherid;
     const schoolCode = req.body.schoolCode;
     const classname = req.body.class_name;
+
+    try {
+      const school = await schoolModel.findOne({ schoolCode: schoolCode });
+
+      if (!school) {
+        return res.status(400).json({ msg: "Invalid school code !" });
+      }
+    } catch (error) {}
   }
 );
 
