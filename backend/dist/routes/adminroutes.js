@@ -115,18 +115,57 @@ adminrouter.post("/:schoolCode/:classname/assign/subject", authmiddleware, autho
         return res.status(500).json({ msg: "Something went wrong !" });
     }
 });
-adminrouter.post("/:schoolCode/:classname/:subject/assign/teacher", authmiddleware, authorizerole("admin", "superadmin"), async (req, res) => {
-    const subjectid = req.params.subject;
+adminrouter.post("/:schoolCode/assign/teacher", authmiddleware, authorizerole("admin", "superadmin"), async (req, res) => {
+    const subjectid = req.body.subjectid;
     const teacherid = req.body.teacherid;
-    const schoolCode = req.body.schoolCode;
-    const classname = req.body.class_name;
+    const schoolCode = req.params.schoolCode;
+    const classid = req.body.class_id;
     try {
         const school = await schoolModel.findOne({ schoolCode: schoolCode });
+        const teacher = await teacherModel.findOne({ _id: teacherid });
+        const subject = await subjectModel.findOne({ _id: subjectid });
+        const find_class = await classModel.findOne({ _id: classid });
         if (!school) {
             return res.status(400).json({ msg: "Invalid school code !" });
         }
+        if (!teacher) {
+            return res.status(400).json({ msg: "Invalid teacher id !" });
+        }
+        if (!subject) {
+            return res.status(400).json({ msg: "Invalid subject id !" });
+        }
+        if (!find_class) {
+            return res.status(400).json({ msg: "Invalid class id !" });
+        }
+        const find_assign = await classSubjectModel.findOne({
+            classId: classid,
+            subjectId: subjectid,
+        });
+        if (!find_assign) {
+            const assign = await classSubjectModel.create({
+                classId: classid,
+                subjectId: subjectid,
+                teacherIds: teacherid,
+                schoolId: school._id,
+            });
+            return res.status(200).json({
+                msg: ` teacherid: ${teacherid} assigned with subjectid:${subjectid} for class ${classid}`,
+            });
+        }
+        else {
+            if (find_assign.teacherIds.includes(teacherid)) {
+                return res.status(400).json({
+                    msg: "Tecaher already assigned with this subject for this class",
+                });
+            }
+            find_assign.teacherIds.push(teacherid);
+            await find_assign.save();
+        }
     }
-    catch (error) { }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({ msg: "Something went wrong" });
+    }
 });
 export { adminrouter };
 //# sourceMappingURL=adminroutes.js.map

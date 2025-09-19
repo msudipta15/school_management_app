@@ -6,7 +6,7 @@ export declare const classSubjectModel: mongoose.Model<{
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
     subjectId: mongoose.Types.ObjectId;
-    teacherId?: mongoose.Types.ObjectId | null;
+    teacherIds: mongoose.Types.ObjectId[];
 }, {}, {}, {}, mongoose.Document<unknown, {}, {
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -14,7 +14,7 @@ export declare const classSubjectModel: mongoose.Model<{
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
     subjectId: mongoose.Types.ObjectId;
-    teacherId?: mongoose.Types.ObjectId | null;
+    teacherIds: mongoose.Types.ObjectId[];
 }, {}, {
     timestamps: true;
 }> & {
@@ -24,7 +24,7 @@ export declare const classSubjectModel: mongoose.Model<{
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
     subjectId: mongoose.Types.ObjectId;
-    teacherId?: mongoose.Types.ObjectId | null;
+    teacherIds: mongoose.Types.ObjectId[];
 } & {
     _id: mongoose.Types.ObjectId;
 } & {
@@ -38,7 +38,7 @@ export declare const classSubjectModel: mongoose.Model<{
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
     subjectId: mongoose.Types.ObjectId;
-    teacherId?: mongoose.Types.ObjectId | null;
+    teacherIds: mongoose.Types.ObjectId[];
 }, mongoose.Document<unknown, {}, mongoose.FlatRecord<{
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -46,7 +46,7 @@ export declare const classSubjectModel: mongoose.Model<{
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
     subjectId: mongoose.Types.ObjectId;
-    teacherId?: mongoose.Types.ObjectId | null;
+    teacherIds: mongoose.Types.ObjectId[];
 }>, {}, mongoose.ResolveSchemaOptions<{
     timestamps: true;
 }>> & mongoose.FlatRecord<{
@@ -56,7 +56,7 @@ export declare const classSubjectModel: mongoose.Model<{
     schoolId: mongoose.Types.ObjectId;
     classId: mongoose.Types.ObjectId;
     subjectId: mongoose.Types.ObjectId;
-    teacherId?: mongoose.Types.ObjectId | null;
+    teacherIds: mongoose.Types.ObjectId[];
 }> & {
     _id: mongoose.Types.ObjectId;
 } & {

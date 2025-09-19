@@ -12,10 +12,12 @@ const classSubjectSchema = new Schema({
         ref: "Subject",
         required: true,
     },
-    teacherId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Teacher",
-    },
+    teacherIds: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Teacher",
+        },
+    ],
     schoolId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "School",
