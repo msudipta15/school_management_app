@@ -166,6 +166,9 @@ adminrouter.post(
 
     try {
       const school = await schoolModel.findOne({ schoolCode: schoolCode });
+      const teacher = await teacherModel.findOne({ _id: teacherid });
+      const subject = await subjectModel.findOne({ _id: subjectid });
+      const find_class = await classModel.findOne({name:})
 
       if (!school) {
         return res.status(400).json({ msg: "Invalid school code !" });
