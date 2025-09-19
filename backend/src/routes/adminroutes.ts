@@ -182,7 +182,37 @@ adminrouter.post(
       if (!find_class) {
         return res.status(400).json({ msg: "Invalid class id !" });
       }
-    } catch (error) {}
+
+      const find_assign = await classSubjectModel.findOne({
+        classId: classid,
+        subjectId: subjectid,
+      });
+
+      if (!find_assign) {
+        const assign = await classSubjectModel.create({
+          classId: classid,
+          subjectId: subjectid,
+          teacherIds: teacherid,
+          schoolId: school._id,
+        });
+
+        return res.status(200).json({
+          msg: ` teacherid: ${teacherid} assigned with subjectid:${subjectid} for class ${classid}`,
+        });
+      } else {
+        if (find_assign.teacherIds.includes(teacherid)) {
+          return res.status(400).json({
+            msg: "Tecaher already assigned with this subject for this class",
+          });
+        }
+
+        find_assign.teacherIds.push(teacherid);
+        await find_assign.save();
+      }
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ msg: "Something went wrong" });
+    }
   }
 );
 
