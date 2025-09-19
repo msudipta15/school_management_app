@@ -155,23 +155,32 @@ adminrouter.post(
 );
 
 adminrouter.post(
-  "/:schoolCode/:classname/:subject/assign/teacher",
+  "/:schoolCode/assign/teacher",
   authmiddleware,
   authorizerole("admin", "superadmin"),
   async (req, res) => {
-    const subjectid = req.params.subject;
+    const subjectid = req.body.subjectid;
     const teacherid = req.body.teacherid;
-    const schoolCode = req.body.schoolCode;
-    const classname = req.body.class_name;
+    const schoolCode = req.params.schoolCode;
+    const classid = req.body.class_id;
 
     try {
       const school = await schoolModel.findOne({ schoolCode: schoolCode });
       const teacher = await teacherModel.findOne({ _id: teacherid });
       const subject = await subjectModel.findOne({ _id: subjectid });
-      const find_class = await classModel.findOne({name:})
+      const find_class = await classModel.findOne({ _id: classid });
 
       if (!school) {
         return res.status(400).json({ msg: "Invalid school code !" });
+      }
+      if (!teacher) {
+        return res.status(400).json({ msg: "Invalid teacher id !" });
+      }
+      if (!subject) {
+        return res.status(400).json({ msg: "Invalid subject id !" });
+      }
+      if (!find_class) {
+        return res.status(400).json({ msg: "Invalid class id !" });
       }
     } catch (error) {}
   }
