@@ -5,6 +5,7 @@ import { authrouter } from "./routes/authroutes.js";
 import { createSuperAdmin } from "./utils/createsuperadmin.js";
 import { superadminrouter } from "./routes/superadminroutes.js";
 import { adminrouter } from "./routes/adminroutes.js";
+import { studentrouter } from "./routes/studentroutes.js";
 dotenv.config();
 const app = express();
 const port = 3002;
@@ -32,6 +33,7 @@ app.use(express.json());
 app.use("/api/v1/auth", authrouter);
 app.use("/api/v1/sa", superadminrouter);
 app.use("/api/v1/admin", adminrouter);
+app.use("/api/v1/student", studentrouter);
 // Start the server
 try {
     app.listen(port);

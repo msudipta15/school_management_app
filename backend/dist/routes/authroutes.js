@@ -5,6 +5,7 @@ import { userModel } from "../models/usermodel.js";
 import { generateToken } from "../utils/generatetoken.js";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
 import { adminModel } from "../models/adminmodel.js";
+import { authorizerole } from "../middlewares/rolemiddleware.js";
 dotenv.config();
 const authrouter = Router();
 authrouter.post("/signin", async (req, res) => {

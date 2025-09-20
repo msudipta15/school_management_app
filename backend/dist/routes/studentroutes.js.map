@@ -1,1 +1,1 @@
-{"version":3,"file":"studentroutes.js","sourceRoot":"","sources":["../../src/routes/studentroutes.ts"],"names":[],"mappings":""}
+{"version":3,"file":"studentroutes.js","sourceRoot":"","sources":["../../src/routes/studentroutes.ts"],"names":[],"mappings":"AAAA,OAAO,OAAO,EAAE,EAAE,MAAM,EAAE,MAAM,SAAS,CAAC;AAC1C,OAAO,EAAE,aAAa,EAAE,MAAM,kCAAkC,CAAC;AAEjE,MAAM,aAAa,GAAG,MAAM,EAAE,CAAC;AAE/B,aAAa,CAAC,IAAI,CAChB,WAAW,EACX,aAAa,CAAC,YAAY,EAAE,OAAO,CAAC,EACpC,KAAK,EAAE,GAAG,EAAE,GAAG,EAAE,EAAE,GAAE,CAAC,CACvB,CAAC;AAEF,OAAO,EAAE,aAAa,EAAE,CAAC"}
