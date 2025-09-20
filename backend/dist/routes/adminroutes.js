@@ -119,7 +119,7 @@ adminrouter.post("/:schoolCode/assign/teacher", authmiddleware, authorizerole("a
     const subjectid = req.body.subjectid;
     const teacherid = req.body.teacherid;
     const schoolCode = req.params.schoolCode;
-    const classid = req.body.class_id;
+    const classid = req.body.classid;
     try {
         const school = await schoolModel.findOne({ schoolCode: schoolCode });
         const teacher = await teacherModel.findOne({ _id: teacherid });
