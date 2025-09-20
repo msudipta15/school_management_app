@@ -6,6 +6,7 @@ import { generateToken } from "../utils/generatetoken.js";
 import { authmiddleware } from "../middlewares/authmiddleware.js";
 import type { Request } from "express";
 import { adminModel } from "../models/adminmodel.js";
+import { authorizerole } from "../middlewares/rolemiddleware.js";
 
 dotenv.config();
 
