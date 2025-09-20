@@ -16,33 +16,6 @@ interface AuthenticationRequest extends Request {
   role?: string;
 }
 
-// Will add email verification later
-authrouter.post("/signup", async (req, res) => {
-  try {
-    const { name, email, password, role } = req.body;
-
-    const existingUser = await userModel.findOne({ email: email });
-    if (existingUser) {
-      return res.status(400).json({ msg: "User already exists !" });
-    }
-
-    const hashedpassword = await bcrypt.hash(password, 10);
-
-    const newUser = new userModel({
-      name,
-      email,
-      password: hashedpassword,
-      role,
-    });
-
-    await newUser.save();
-    res.status(200).json({ msg: "Sign up successfull !" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Something went wrong !" });
-  }
-});
-
 authrouter.post("/signin", async (req, res) => {
   try {
     const { email, password } = req.body;
